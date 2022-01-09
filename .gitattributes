@@ -1,5 +1,0 @@
-models/** filter=lfs diff=lfs merge=lfs -text
-20211113-21011636837298-Covid19-XRayDetection-Model-Good-2[[:space:]](1).h5 filter=lfs diff=lfs merge=lfs -text
-20211127-02161637979419-greatXrayCTMultiClassCovid19Model.h5 filter=lfs diff=lfs merge=lfs -text
-greatCTCovid19ModelGC.h5 filter=lfs diff=lfs merge=lfs -text
-*.h5 filter=lfs diff=lfs merge=lfs -text
