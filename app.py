@@ -91,7 +91,7 @@ def import_and_predict(image_data, model):
 
     # model = tf.keras.models.load_model('my_model2.h5')
 modelst = tf.keras.models.load_model('20211127-02161637979419-greatXrayCTMultiClassCovid19Model.h5')
-modelstxray = tf.keras.models.load_model('20211113-21011636837298-Covid19-XRayDetection-Model-Good-2 (1).h5')
+# modelstxray = tf.keras.models.load_model('20211113-21011636837298-Covid19-XRayDetection-Model-Good-2 (1).h5')
 modelstct = tf.keras.models.load_model('greatCTCovid19ModelGC.h5')
 
 
@@ -226,7 +226,7 @@ def uploadseeko():
         # st.image(imageIM, use_column_width=True)
         # st.write(file_details)
         # st.image(load_image(image_file), width=250)
-        prediction = import_and_predict(imageIM, modelstxray)
+        prediction = import_and_predict(imageIM, modelstct)
         pred = prediction[0][0]
         print(prediction)
         print("pred only is: ", pred)
