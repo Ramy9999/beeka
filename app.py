@@ -15,7 +15,7 @@ from gevent.pywsgi import WSGIServer
 
 #newly added
 import numpy as np
-import pandas as pd
+# import pandas as pd
 from PIL import  Image
 
 # from data.create_data import create_table
@@ -41,7 +41,7 @@ cwd = os.getcwd()
 # model2 = load_model(model_weight2)
 # model3 = load_model(model_weight3)
 
-print('Model loaded. Check http://127.0.0.1:5000/')
+# print('Model loaded. Check http://127.0.0.1:5000/')
 
 # Predict Function
 
@@ -90,25 +90,29 @@ def import_and_predict(image_data, model):
     return prediction
 
     # model = tf.keras.models.load_model('my_model2.h5')
-modelst = tf.keras.models.load_model('20211127-02161637979419-greatXrayCTMultiClassCovid19Model.h5')
+# modelst = tf.keras.models.load_model('20211127-02161637979419-greatXrayCTMultiClassCovid19Model.h5')
 # modelstxray = tf.keras.models.load_model('20211113-21011636837298-Covid19-XRayDetection-Model-Good-2 (1).h5')
-modelstct = tf.keras.models.load_model('greatCTCovid19ModelGC.h5')
+# modelstct = tf.keras.models.load_model('greatCTCovid19ModelGC.h5')
+
+modelst = tf.keras.models.load_model('multiclassmodel')
+modelstxray = tf.keras.models.load_model('multiclassmodel')
+modelstct = tf.keras.models.load_model('multiclassmodel')
 
 
-@app.route("/", methods=['GET'])
+@app.route("/")
 def index():
     return render_template('index2.html')
 
-@app.route("/xray", methods=['GET'])
+@app.route("/xray")
 def indexseeko():
     return render_template('xrays.html')
 
-@app.route("/ct", methods=['GET'])
+@app.route("/ct")
 def indexbeeko():
     return render_template('cts.html')
 
 
-@app.route('/predict', methods=['GET','POST'])
+@app.route('/predict', methods=['POST'])
 def upload():
     if request.method == 'POST':
         img_file = request.files['file']
@@ -210,7 +214,7 @@ def upload():
 
 
 
-@app.route('/predict2', methods=['GET','POST'])
+@app.route('/predict2', methods=['POST'])
 def uploadseeko():
     if request.method == 'POST':
         img_file = request.files['file']
@@ -226,7 +230,7 @@ def uploadseeko():
         # st.image(imageIM, use_column_width=True)
         # st.write(file_details)
         # st.image(load_image(image_file), width=250)
-        prediction = import_and_predict(imageIM, modelstct)
+        prediction = import_and_predict(imageIM, modelstxray)
         pred = prediction[0][0]
         print(prediction)
         print("pred only is: ", pred)
@@ -267,7 +271,7 @@ def uploadseeko():
     return None
 
 
-@app.route('/predict3', methods=['GET','POST'])
+@app.route('/predict3', methods=['POST'])
 def uploadbeeko():
     if request.method == 'POST':
         img_file = request.files['file']
@@ -331,4 +335,4 @@ def uploadbeeko():
 
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0',debug=True)
+    app.run()
